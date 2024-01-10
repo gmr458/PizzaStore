@@ -39,7 +39,7 @@ app.MapPost("/pizzas", async (PizzaDb db, Pizza pizza) =>
     return Results.Created($"/pizzas/{pizza.Id}", pizza);
 });
 
-app.MapPut("/pizzas", async (PizzaDb db, Pizza updatePizza, int id) =>
+app.MapPut("/pizzas/{id}", async (PizzaDb db, Pizza updatePizza, int id) =>
 {
     var pizza = await db.Pizzas.FindAsync(id);
     if (pizza is null) return Results.NotFound();
